@@ -197,4 +197,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Google sounds
 include vendor/gzosp/google/GoogleAudio.mk
 
+# Include SDCLANG definitions if it is requested and available
+ifeq ($(HOST_OS),linux)
+    ifneq ($(wildcard vendor/qcom/sdclang/),)
+        include vendor/gzosp/sdclang/sdclang.mk
+    endif
+endif
+
 EXTENDED_POST_PROCESS_PROPS := vendor/gzosp/tools/gzosp_process_props.py
